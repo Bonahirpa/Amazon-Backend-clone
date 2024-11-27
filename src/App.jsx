@@ -1,17 +1,12 @@
 import './App.css'
-import CarouselEffect from './components/Carousel/Carousel'
-import Header from './components/Header/Header'
+import Routing from './Routing';
 
 function App() {
- 
-
   return (
     <>
-      <h1>Hello world</h1>
-      <Header />
-      <CarouselEffect />
+     <Routing />
     </>
-  )
-}
+  );
+};
 
 export default App

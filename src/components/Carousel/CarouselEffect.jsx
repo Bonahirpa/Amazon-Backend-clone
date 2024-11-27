@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {img} from "./img/data"
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -16,7 +16,8 @@ const CarouselEffect = () => {
           return <img src={imageItemsLink} />;
         })}
       </Carousel>
-      <div className={classes.hero_img}></div>
+      <div className={classes.hero_img}>
+      </div>
     </div>
   );
 }
