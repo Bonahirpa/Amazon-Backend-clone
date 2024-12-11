@@ -13,6 +13,7 @@ function Cart() {
   const total = basket.reduce((amount, item) => {
    return item.price*item.amount + amount
   }, 0)
+
   const increment = (item) => {
     dispatch({
       type: Type.ADD_TO_BASKET,
@@ -46,6 +47,7 @@ function Cart() {
                     renderAdd={false}
                     flex={true}
                   />
+
                   <div className={classes.btn_container}>
                     <button
                       className={classes.btn}
@@ -58,7 +60,8 @@ function Cart() {
                       className={classes.btn}
                       onClick={() => decrement(item.id)}
                     >
-                    <IoIosArrowDown size={20} />
+                      <IoIosArrowDown size={20} />
+                      
                     </button>
                   </div>
                 </section>

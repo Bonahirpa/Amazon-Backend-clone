@@ -4,12 +4,13 @@ import { BsSearch } from "react-icons/bs";
 import classes from "./header.module.css"
 import amazon_letter_logo from "../../assets/images/logo/amazon_letter_white_logo.png";
 import { BiCart } from "react-icons/bi";
+import { auth } from '../../Utility/firebase';
 import LowerHeader from './LowerHeader';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../DataProvider/DataProvider';
 const Header = () => {
 
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{user, basket }, dispatch] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -26,7 +27,8 @@ const Header = () => {
             <div className={classes.delivery}>
               <span>
                 {/* icon */}
-                {SlLocationPin}
+               <SlLocationPin />
+                {/* {SlLocationPin} */}
               </span>
               <div>
                 <p>Delivery to</p>
@@ -40,7 +42,7 @@ const Header = () => {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="search product" />
-            <BsSearch />
+            <BsSearch size={38} />
           </div>
           {/* right side link */}
           <div className={classes.order__container}>
@@ -53,10 +55,20 @@ const Header = () => {
                 <option value="">EN</option>
               </section>
             </Link>
-            <Link to="/auth">
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Sign In</p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut}>Sign Out</span>
+                    {/* onClick={handleSignOutAndClearCart} */}
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In</p>
+                    {/* <span>Account & Lists</span> */}
+                  </>
+                )}
               </div>
             </Link>
             <Link to="/orders">
